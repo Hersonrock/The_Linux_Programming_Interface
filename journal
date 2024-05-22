@@ -1,0 +1,12 @@
+Wednesday, May 22, 2024
+Today I studied from page 113 to 115
+I spent most of the time learing about the calls
+-getppid()
+-getpid()
+-kill()
+Im trying to prove what is being said that when a parent dies the child
+processes are re-parented to init.
+Now the current parent is bash so I'm seeing some issues with making the test
+work.
+I guess I will need to use something like fork() to create a test that does not
+involve bash.
