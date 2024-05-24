@@ -17,3 +17,4 @@ I used the fork() call to make a child and orhpaned the process by killing the
 parent with a signal 15.
 
 The child with the same pid was now under init as the parent.
+Read from page 115 to page 118
