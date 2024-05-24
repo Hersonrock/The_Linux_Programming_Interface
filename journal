@@ -10,3 +10,10 @@ Now the current parent is bash so I'm seeing some issues with making the test
 work.
 I guess I will need to use something like fork() to create a test that does not
 involve bash.
+
+Thursday, May 23, 2024
+Today I worked further on the "kill_parent.c" program which worked!
+I used the fork() call to make a child and orhpaned the process by killing the
+parent with a signal 15.
+
+The child with the same pid was now under init as the parent.
