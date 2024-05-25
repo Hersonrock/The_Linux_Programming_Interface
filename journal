@@ -18,3 +18,26 @@ parent with a signal 15.
 
 The child with the same pid was now under init as the parent.
 Read from page 115 to page 118
+
+Friday, May 24, 2024
+Today was a rought day I read from page 118 to 138
+I learned about Stack and stack frames, as well as Virtual memory management
+and memory layout
+I also spend some time working with enviroment list and the four functions 
+explained on the chapted
+-putenv()
+-getenv()
+-setenv()
+-unsetenv()
+
+I feel conflicted as evevn though I know environment variables can be useful
+for things like process intercomunication I have not seen the need to use
+enviroment variables on my own programs.
+
+as a project I wrote a small test program that shows me how getenv() and the 
+extern char **environ works.
+
+Today I spend an ungodly amount of time reading this chapter my brain was 
+not understanding anything. I hope tomorrow is better.
+
+
