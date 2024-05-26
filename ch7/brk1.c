@@ -21,6 +21,7 @@ int main(int argc, char *argv[]){
         //printf("This is the content of heap: %s\n", heapStart);
         
         while(1){
+                sleep(100);
         }
 
         return 0;

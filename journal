@@ -56,3 +56,15 @@ But I'm a little lost as some memory addresses seem to be way to big, for
 example I cannot see why there is such big jumps between some of the pointer.
 I can keep working on it tomorow.
 
+Sunday, May 26, 2024
+Today I spent like 3 hours working on a program to parse the /proc/[pid]/maps
+file, and kinda failed misserably. I wanted to be exact on how I allocate space
+for reading buffers but turns out you cannot just "stat" a virtual file system
+file like maps (what a surprise).
+
+I tried different methods like using offsets, and stat() systemcall. Seems I'll 
+have to give up and use an arbitrarily big buffer to dump file contents before
+I can really read it. I'll work further on it later on today or tomorrow.
+I give up for today.
+
+
