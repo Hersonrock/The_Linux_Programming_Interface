@@ -41,3 +41,18 @@ Today I spend an ungodly amount of time reading this chapter my brain was
 not understanding anything. I hope tomorrow is better.
 
 
+Saturday, May 25, 2024
+Today I studied from page 139 to 140
+I really did not advance a lot of the book, BUT and this is important I 
+practiced a lot on understanding the virtual memory address segments.
+
+I made a program that captures the program break address before and after a
+sbrk(8) call and I can see how the program break grows by 8 bytes.
+
+I also have been trying to make sense out of the other pointers adresses of
+etext,edata,end by looking at /proc/[pid]/maps
+
+But I'm a little lost as some memory addresses seem to be way to big, for 
+example I cannot see why there is such big jumps between some of the pointer.
+I can keep working on it tomorow.
+
