@@ -68,3 +68,17 @@ I can really read it. I'll work further on it later on today or tomorrow.
 I give up for today.
 
 
+Monday, May 27, 2024
+Today I spent like 5 hours making my memmap program functional.
+
+I'm not really sure if the 6+ functions used are worth it. All it does is to 
+open a file and digest hexadecimals to print the difference between them
+but it took me way too much effort.
+
+The purpose of the program is to help me better understand how is exactly
+virtual memory organized. based on /proc/[pid/maps.
+
+Anyway! I'm proud of my program but it was a pain to make and I did not advance
+on the book.
+
+
