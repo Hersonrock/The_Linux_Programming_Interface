@@ -144,13 +144,20 @@ void printMap(long *addresses, int count){
         
         long diff = 0;
 
-        printf("----%lx----\n", addresses[0]);
+        printf("--%lx--", addresses[0]);
 
         for (int i = 1; i < count; i++){
                 diff = addresses[i] - addresses[i - 1];
-                if ( diff != 0 ){
-                        printf("\t%ldKB\n", toKB(diff));
-                        printf("----%lx----\n", addresses[i]);
+                if ((diff != 0) && (i % 2 != 0) ){
+                        printf("%ldKB", toKB(diff));
+                        printf("--%lx--\n", addresses[i]);
+                }
+                else if ((diff != 0) && (i % 2 == 0) ){
+                        printf("[%ldKB]\n", toKB(diff));
+                        printf("--%lx--", addresses[i]);
+                }
+                else{ 
+                        printf("--%lx--", addresses[i]);
                 }
         }
 }

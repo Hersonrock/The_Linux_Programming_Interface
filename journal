@@ -82,3 +82,9 @@ Anyway! I'm proud of my program but it was a pain to make and I did not advance
 on the book.
 
 
+Tuesday, May 28, 2024
+
+Today I finished my tool that allow me to see the differences between the
+segments on memory based on reading the /proc/*/maps file
+
+I also read from page 140 to 153 Tomorrow I'll start chapter 8
