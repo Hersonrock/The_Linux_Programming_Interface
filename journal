@@ -108,4 +108,4 @@ checks its real, effective and saved-set uid.
 It was strange as the outputs of the getresuid() function are completly by
 reference so I had to initialize some pointers for use.
 
-
+finished chapter 9, now reading chapter 10 page 185
