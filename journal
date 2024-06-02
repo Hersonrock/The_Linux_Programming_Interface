@@ -109,3 +109,16 @@ It was strange as the outputs of the getresuid() function are completly by
 reference so I had to initialize some pointers for use.
 
 finished chapter 9, now reading chapter 10 page 185
+
+Saturday, June 01, 2024
+
+Today I finished Chapter 10, I'm currently on page 210.
+I made a small program that makes uses of the time handling functions
+ 
+I'm debating myself if I should do a review of these 10 past chapters studied 
+befor moving forward...
+
+Or should I keep pushing on chapter 11 with the fear that I will be forgeting a
+lot of what I've learned already?
+
+
