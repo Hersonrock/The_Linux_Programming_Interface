@@ -129,3 +129,15 @@ where author explains the final fundamental feature of the system programming
 inteface.
 
 Today I studied chapter 11 up to page 213. 
+Tuesday, June 04, 2024
+
+Today I finished chapter 11 and 12.
+Now on page 223
+
+The concept of system limits and using /proc to get process information is 
+great. 
+
+Tomorrow I'll work on organizing a review of the last 12 chapters, as 12 is the 
+end of the fundamentals as per the author, I want to give it another pass an try 
+my luck at actually writing more programs that use the system calls. 
+
