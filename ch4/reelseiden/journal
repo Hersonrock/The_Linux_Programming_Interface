@@ -1,0 +1,11 @@
+Saturday, June 08, 2024
+
+Today I started by creating the skeleton of the main program functions.
+
+Studying the program sample from the book I can see the following point
+
+1) buffer size is a const , is not dynamic( Maybe this is a good thing?)
+2) There is a USAGE message for the program. I sometimes forget about this.
+3) Open, Read, Write, Close function have error checking.
+
+I'll start writing this function tomorrow.

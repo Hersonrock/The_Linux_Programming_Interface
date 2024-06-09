@@ -3,7 +3,7 @@ CFLAGS=-Wall -g
 #----ProgramName----#
 NAME=main
 #----Dependencies---#
-DEP1=other
+DEP1=fileio
 #------------#
 IDIR=./include
 DEPS=$(IDIR)/$(DEP1).h
