@@ -9,3 +9,8 @@ Studying the program sample from the book I can see the following point
 3) Open, Read, Write, Close function have error checking.
 
 I'll start writing this function tomorrow.
+
+Sunday, June 09, 2024
+
+Today I added the open and read functions, should be good enough to move into
+next steps where I make the write function.
