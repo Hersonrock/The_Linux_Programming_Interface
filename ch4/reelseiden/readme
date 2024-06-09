@@ -1,0 +1,22 @@
+----README----
+
+The main goal of this program is to be able to take any file and split in two 
+parts, and then be able to merge them together.
+
+A clear enhancement to it would be to make it so it can split files in N pieces
+(given some limitations ofcourse)
+
+Requirements will be
+
+1) Make a function that can open files and read them into a buffer.
+(Im not sure if this buffer should be of variable size or not)
+
+2) Make a function that can create a file and write to it, the contents of a
+buffer.
+
+3) Make a function that can append a file to other, hopefully this will be 
+enough to merge the two halves together.
+
+4) Make some function that someway given a fraction of the file it knows what 
+numbered piece is it. Lets say I broke a program in 4 pieces, I should be able 
+to know by reading the piece that it is the 4th piece. Not rely on the filename
