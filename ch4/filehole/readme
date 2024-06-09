@@ -1,0 +1,3 @@
+----README----
+This program is created to practice the concepts of file hole using systemcalls
+like open(),write(),lseek()
