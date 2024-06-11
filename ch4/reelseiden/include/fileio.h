@@ -9,11 +9,12 @@
 #include<string.h>
 
 #define DEBUG 0
-#define MAX_FILE_SIZE 536870912 //512MiB
+#define MAX_FILE_SIZE 536870912 
 #define PATH "./inputFile"
+#define OUT_PATH "./outFile"
 
-int openFile(const char *path, int flags);
+int openFile(const char *path, int flags, mode_t mode);
 int readFile(const char *path, char *buf);
-int writeFile(const char *path);
+int writeFile(char *buf, const char *path, int itemN);
 
 #endif // FILEIO

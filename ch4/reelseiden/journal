@@ -14,3 +14,12 @@ Sunday, June 09, 2024
 
 Today I added the open and read functions, should be good enough to move into
 next steps where I make the write function.
+
+Monday, June 10, 2024
+
+Today I finished the first needed functionality of the program which is making a
+copy of a file.
+
+Tomorrow I'll play with the notion of being able to write half to a file and 
+half to another. (Splitting)
+

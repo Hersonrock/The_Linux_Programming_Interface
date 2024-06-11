@@ -1,12 +1,12 @@
 #include "../include/fileio.h"
 
-int openFile(const char *path, int flags){
+int openFile(const char *path, int flags, mode_t mode){
 
         int fd;
 
-        if((fd = open(path, flags)) == -1){
+        if((fd = open(path, flags, mode)) == -1){
                 fprintf(stderr, "Failed opening file %s\n", path);
-                perror("Filed opening file\n");
+                perror("Failed opening file\n");
         }
 
         return fd;
@@ -15,11 +15,10 @@ int openFile(const char *path, int flags){
 
 int readFile(const char *path, char *buf){
 
-        int fd = openFile(path, O_RDONLY);
+        int fd = openFile(path, O_RDONLY, 0);
         ssize_t itemsRead;
         off_t curr,end;
 
-        buf = malloc(MAX_FILE_SIZE * sizeof(char));
         memset(buf, '\0', MAX_FILE_SIZE * sizeof(char));
         
         errno = 0;
@@ -51,9 +50,26 @@ int readFile(const char *path, char *buf){
                 printf("itemsRead: %ld\n", itemsRead);
         }
 
+        return itemsRead;
+}
 
-        free(buf);
+int writeFile(char *buf, const char *path, int itemN){
+        
+        int flags = O_WRONLY | O_CREAT | O_TRUNC; 
+        mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
+
+        int fd = openFile(path, flags, mode);
+        
+        errno = 0;
+        if((write(fd, buf, itemN)) != itemN){
+                fprintf(stderr, "Error, Partial Write\n");
+                return EXIT_FAILURE;
+        }
+
+        if(errno != 0 ){
+                perror("Failed writing to file\n");
+                return EXIT_FAILURE;
+        }
 
         return EXIT_SUCCESS;
 }
-

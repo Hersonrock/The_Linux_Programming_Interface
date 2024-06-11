@@ -10,7 +10,7 @@ DEPS=$(IDIR)/$(DEP1).h
 OBJ=./src/main.o ./src/$(DEP1).o
 
 %.o:%.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS) -I$(IDIR)
+	$(CC) -c -std=c2x -o $@ $< $(CFLAGS) -I$(IDIR)
 
 ./bin/$(NAME): $(OBJ)
 	$(CC) -o $@ $^
