@@ -1,27 +1,34 @@
 #include "../include/fileio.h"
+#include "../include/split.h"
 
 int main(int argc, char *argv[argc + 1]){
 
         char *buf;
         buf = malloc(sizeof(char) * MAX_FILE_SIZE);
         int itemsRead;
-        int pieceSize[2] = { 
-                [0] = 0,
-                [1] = 0
-        };
-        char *paths[2] = {
-                [0] = PATH1,
-                [1] = PATH2
-        };
+        int *pieceSize;
+        char **paths;
+        int nSplit = 20;
+        pieceSize = malloc(sizeof(int) * nSplit);
+        paths = malloc(sizeof(char *) * nSplit);
+        for(size_t i = 0; i < nSplit; i++){
+                paths[i] = malloc(sizeof(char) * MAX_PATH_SIZE);
+        }
 
         itemsRead = readFile(PATH, buf);
 
-        pieceSize[0] = itemsRead / 2;
-        pieceSize[1] = itemsRead - pieceSize[0]; 
+        split(nSplit, itemsRead, pieceSize, paths);
 
-        writeFile(buf, paths[0], pieceSize[0]);
-        writeFile(buf, paths[1], pieceSize[1]);
+        for(size_t i = 0; i < nSplit; i++){
+                writeFile(buf, paths[i], pieceSize[i]);
+        }
 
         free(buf);
+        for(size_t i = 0; i < nSplit; i++){
+                free(paths[i]);
+        }
+        free(paths);
+
+
         return EXIT_SUCCESS;
 }

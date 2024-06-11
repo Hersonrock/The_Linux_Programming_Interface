@@ -23,3 +23,8 @@ copy of a file.
 Tomorrow I'll play with the notion of being able to write half to a file and 
 half to another. (Splitting)
 
+Tuesday, June 11, 2024
+
+Today I finished the function that allows me to split a file into n pieces.
+
+Tomorrow I'll work on creating a function that can merge them.

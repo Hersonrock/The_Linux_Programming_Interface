@@ -4,10 +4,11 @@ CFLAGS=-Wall -g
 NAME=main
 #----Dependencies---#
 DEP1=fileio
+DEP2=split
 #------------#
 IDIR=./include
 DEPS=$(IDIR)/$(DEP1).h
-OBJ=./src/main.o ./src/$(DEP1).o
+OBJ=./src/main.o ./src/$(DEP1).o ./src/$(DEP2).o
 
 %.o:%.c $(DEPS)
 	$(CC) -c -std=c2x -o $@ $< $(CFLAGS) -I$(IDIR)

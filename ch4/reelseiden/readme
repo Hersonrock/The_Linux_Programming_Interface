@@ -24,5 +24,5 @@ to know by reading the piece that it is the 4th piece. Not rely on the filename
 
 [DONE] Create a function that can open a file and read them into a buffer.
 [DONE] Create a function that can write from a buffer to a file.
-[PENDING] Create a function that can read a file and split it into two files.
+[DONE] Create a function that can read a file and split it into n files.
 [PENDING] Create a function that can merge two split files.
