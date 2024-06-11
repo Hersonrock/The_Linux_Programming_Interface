@@ -11,7 +11,9 @@
 #define DEBUG 0
 #define MAX_FILE_SIZE 536870912 
 #define PATH "./inputFile"
-#define OUT_PATH "./outFile"
+//#define OUT_PATH "./outFile"
+#define PATH1 "./piece1"
+#define PATH2 "./piece2"
 
 int openFile(const char *path, int flags, mode_t mode);
 int readFile(const char *path, char *buf);
