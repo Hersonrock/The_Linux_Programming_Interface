@@ -1,11 +1,9 @@
-#include"../include/fileio.h"
+#include "../include/fileio.h"
 
-int openFile(const char *path){
+int openFile(const char *path, int flags){
 
         int fd;
-        int flags;
 
-        flags = O_RDONLY;
         if((fd = open(path, flags)) == -1){
                 fprintf(stderr, "Failed opening file %s\n", path);
                 perror("Filed opening file\n");
@@ -15,10 +13,9 @@ int openFile(const char *path){
 
 }
 
-int readFile(const char *path){
+int readFile(const char *path, char *buf){
 
-        int fd = openFile(path);
-        char *buf;
+        int fd = openFile(path, O_RDONLY);
         ssize_t itemsRead;
         off_t curr,end;
 
@@ -59,3 +56,4 @@ int readFile(const char *path){
 
         return EXIT_SUCCESS;
 }
+

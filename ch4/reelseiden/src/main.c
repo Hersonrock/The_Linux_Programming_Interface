@@ -1,7 +1,9 @@
 #include "../include/fileio.h"
 
-int main(int argc, char *argv[argc]){
+int main(int argc, char *argv[argc + 1]){
 
-        readFile(PATH);
+        char buf[MAX_FILE_SIZE];
+        readFile(PATH, buf);
+
         return EXIT_SUCCESS;
 }
