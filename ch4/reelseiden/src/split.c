@@ -1,7 +1,7 @@
 #include "../include/split.h"
 
 
-void split(int nSplit, int readItems, int *offsets, char **paths){
+void split(int nSplit, int readItems, int *pieceSize, char **paths){
 
         int step = readItems / nSplit;
         float fstep = readItems % nSplit;
@@ -10,12 +10,12 @@ void split(int nSplit, int readItems, int *offsets, char **paths){
         for(size_t i = 0; i < nSplit; i++){
         
                 if(i){
-                        offsets[i] = step;
+                        pieceSize[i] = step;
                 }
                 else if(fstep > 0){
-                        offsets[i] = step + extra;
+                        pieceSize[i] = step + extra;
                 }else{
-                        offsets[i] = step;
+                        pieceSize[i] = step;
                 }
                 sprintf(paths[i], "./piece%ld", i + 1);        
         }
