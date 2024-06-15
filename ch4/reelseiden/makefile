@@ -6,10 +6,12 @@ NAME=main
 DEP1=fileio
 DEP2=split
 DEP3=merge
+DEP4=mem
 #------------#
 IDIR=./include
 DEPS=$(IDIR)/$(DEP1).h
-OBJ=./src/main.o ./src/$(DEP1).o ./src/$(DEP2).o ./src/$(DEP3).o
+OBJ=./src/main.o ./src/$(DEP1).o ./src/$(DEP2).o ./src/$(DEP3).o \
+    ./src/$(DEP4).o
 
 %.o:%.c $(DEPS)
 	$(CC) -c -std=c2x -o $@ $< $(CFLAGS) -I$(IDIR)
