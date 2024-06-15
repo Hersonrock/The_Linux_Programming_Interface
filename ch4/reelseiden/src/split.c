@@ -13,9 +13,9 @@ void split(int nSplit, int readItems, int *pieceSize, char **paths){
                         pieceSize[i] = step;
                 }
                 else if(fstep > 0){
-                        pieceSize[i] = step + extra;
+                        pieceSize[i] = step + extra + HEADER_SIZE;
                 }else{
-                        pieceSize[i] = step;
+                        pieceSize[i] = step + HEADER_SIZE;
                 }
                 sprintf(paths[i], "./piece%ld", i + 1);        
         }
