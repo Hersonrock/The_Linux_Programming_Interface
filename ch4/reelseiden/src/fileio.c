@@ -75,3 +75,44 @@ int writeFile(char *buf, const char *path, int itemN){
         close(fd);
         return EXIT_SUCCESS;
 }
+
+int readFilePartial(const char *path, char *buf, size_t size){
+
+        int fd = openFile(path, O_RDONLY, 0);
+        ssize_t itemsRead;
+        off_t curr,end;
+
+        memset(buf, '\0', size * sizeof(char));
+        
+        errno = 0;
+        itemsRead = read(fd, buf, (size_t)size);
+        if(errno != 0){
+                perror("Error reading file\n");
+                return EXIT_FAILURE;
+        }
+
+        if(DEBUG){
+                errno = 0;
+                curr = lseek(fd, 0, SEEK_CUR);
+                end = lseek(fd, 0 , SEEK_END);
+                if(errno != 0){
+                        perror("Error with lseek\n");
+                        return EXIT_FAILURE;
+                }
+
+                if(curr == end){
+                        printf("Read whole file,EOF reached\n");
+
+                }
+                else if(curr < end){
+                        printf("File is bigger than MAX_FILE_SIZE\n");
+                }
+
+                printf("Offset is at: %ld\n", curr);
+                printf("End is at: %ld\n", end);
+                printf("itemsRead: %ld\n", itemsRead);
+        }
+
+        close(fd);
+        return itemsRead;
+}
