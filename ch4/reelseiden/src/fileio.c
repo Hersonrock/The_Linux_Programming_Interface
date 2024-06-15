@@ -54,18 +54,25 @@ int readFile(const char *path, char *buf){
         return itemsRead;
 }
 
-int writeFile(char *buf, const char *path, int itemN){
+int writeFile(char *buf, const char *path, int itemN,
+                int bufOffset, off_t seekOffset){
         
         int flags = O_WRONLY | O_CREAT | O_TRUNC; 
         mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
+        off_t cur;
 
         int fd = openFile(path, flags, mode);
         
+        cur = lseek(fd, seekOffset, SEEK_SET);
+        printf("Writing %s, offset: %ld\n", path, cur); 
         errno = 0;
-        if((write(fd, buf, itemN)) != itemN){
+        if((write(fd, buf + bufOffset, itemN)) != itemN){
                 fprintf(stderr, "Error, Partial Write\n");
                 return EXIT_FAILURE;
         }
+        cur = lseek(fd, 0, SEEK_CUR);
+        printf("Writing %s, offset: %ld\n", path, cur); 
+        printf("-------\n"); 
 
         if(errno != 0 ){
                 perror("Failed writing to file\n");
@@ -91,7 +98,7 @@ int readFilePartial(const char *path, char *buf, size_t size){
                 return EXIT_FAILURE;
         }
 
-        if(DEBUG){
+        if(1){
                 errno = 0;
                 curr = lseek(fd, 0, SEEK_CUR);
                 end = lseek(fd, 0 , SEEK_END);

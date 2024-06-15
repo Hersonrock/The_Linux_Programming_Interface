@@ -7,26 +7,25 @@ int main(int argc, char *argv[argc + 1]){
 
         char *buf;
         //*****DEBUG****
-        char *bufDebug;
         int itemsReadDebug;
         struct head *headDebug;
         //*************
         
+        int bufOffset = 0;
         int itemsRead;
         int *pieceSize;
         char **paths;
-        char *headerBuf;
-        int nSplit = 20;
-        struct head header;
+        int nSplit = 10;
+        struct head *header;
 
 
         //*****DEBUG****
-        bufDebug = myAlloc(sizeof(struct head));
+        headDebug = myAlloc(sizeof(struct head));
         //*************
         buf = myAlloc(sizeof(char) * MAX_FILE_SIZE);
         pieceSize = myAlloc(sizeof(int) * nSplit);
         paths = myAlloc(sizeof(char *) * nSplit);
-        headerBuf = myAlloc(sizeof(struct head));
+        header = myAlloc(sizeof(struct head));
         for(size_t i = 0; i < nSplit; i++){
                 paths[i] = myAlloc(sizeof(char) * MAX_PATH_SIZE);
         }
@@ -34,29 +33,38 @@ int main(int argc, char *argv[argc + 1]){
         itemsRead = readFile(PATH, buf);
         split(nSplit, itemsRead, pieceSize, paths);
 
-        header.headS = pieceSize[0];
-        header.pieceS = pieceSize[1];
-        header.nSplit = nSplit;
-        //printf("sizeof struct head: %ld\n", sizeof(struct head));
+        header->headS = pieceSize[0];
+        header->pieceS = pieceSize[1];
+        header->nSplit = nSplit;
+        
+        printf("headS: %ld|pieceS: %ld|nSplit %d\n", header->headS,
+                                                     header->pieceS,
+                                                     header->nSplit);
         for(size_t i = 0; i < nSplit; i++){
-                if(!i){
-                        writeFile(headerBuf, paths[i], HEADER_SIZE);
+                if(i == 0){
+                        writeFile((char *)header, paths[i], HEADER_SIZE, 
+                                        bufOffset, 0);
+                        //writeFile(buf, paths[i], pieceSize[i], 
+                                        //bufOffset, HEADER_SIZE);
                 }
-                writeFile(buf, paths[i], pieceSize[i]);
+                else {
+                        bufOffset = pieceSize[0] + pieceSize[1] * (i - 1);
+                        writeFile(buf, paths[i], pieceSize[i], bufOffset, 0);
+                }
         }
 
         //*****DEBUG****
-        itemsReadDebug = readFilePartial(PATH, bufDebug, HEADER_SIZE);
-        headDebug = (struct head *)bufDebug;
+        itemsReadDebug = readFilePartial(PATH, (char *)headDebug, HEADER_SIZE);
+        printf("read %d items\n", itemsReadDebug);
         printf("HeadS: %ld\n", headDebug->headS);
         printf("pieceS: %ld\n", headDebug->pieceS);
         printf("nSplit: %d\n", headDebug->nSplit);
         //*************
 
-        free(bufDebug);
         free(buf);
         free(pieceSize);
-        free(headerBuf);
+        free(header);
+        free(headDebug);
         for(size_t i = 0; i < nSplit; i++){
                 free(paths[i]);
         }

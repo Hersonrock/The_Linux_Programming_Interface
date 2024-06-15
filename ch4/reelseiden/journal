@@ -28,3 +28,14 @@ Tuesday, June 11, 2024
 Today I finished the function that allows me to split a file into n pieces.
 
 Tomorrow I'll work on creating a function that can merge them.
+
+Saturday, June 15, 2024
+
+I'm working on fixing the split function, I think I managed to get it to write 
+offsets corretly. but I need to start testing if it is correctly being written 
+or not.
+
+I cannot move into the merge function without confirming it first.
+Added to that I'm working on saving some metadata on the first 24 bytes of a 
+file but I'm messing up how I'm referencing the struct.
+
