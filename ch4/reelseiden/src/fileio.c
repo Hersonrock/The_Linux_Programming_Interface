@@ -50,6 +50,7 @@ int readFile(const char *path, char *buf){
                 printf("itemsRead: %ld\n", itemsRead);
         }
 
+        close(fd);
         return itemsRead;
 }
 
@@ -71,5 +72,6 @@ int writeFile(char *buf, const char *path, int itemN){
                 return EXIT_FAILURE;
         }
 
+        close(fd);
         return EXIT_SUCCESS;
 }
