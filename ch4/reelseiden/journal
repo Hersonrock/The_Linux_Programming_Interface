@@ -39,3 +39,12 @@ I cannot move into the merge function without confirming it first.
 Added to that I'm working on saving some metadata on the first 24 bytes of a 
 file but I'm messing up how I'm referencing the struct.
 
+Monday, June 17, 2024
+
+YEAAAAH today is a big success, I improved the write to pieces function,
+removed a bad truncate flag from write function.
+Added metadata to the start of the file(this will be useful for the merge)
+
+Tomorrow I'll keep working on appropiately making a readed function for the 
+metadata, which in hindsight is the same debug function.
+I wonder on which header I will put it.. ummm

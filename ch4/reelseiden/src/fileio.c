@@ -57,22 +57,31 @@ int readFile(const char *path, char *buf){
 int writeFile(char *buf, const char *path, int itemN,
                 int bufOffset, off_t seekOffset){
         
-        int flags = O_WRONLY | O_CREAT | O_TRUNC; 
+        int flags = O_WRONLY | O_CREAT ; 
         mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
-        off_t cur;
+
+        //*****debug******
+        //off_t cur;
+        //***************
 
         int fd = openFile(path, flags, mode);
         
-        cur = lseek(fd, seekOffset, SEEK_SET);
-        printf("Writing %s, offset: %ld\n", path, cur); 
+        lseek(fd, seekOffset, SEEK_SET);
+        //cur = lseek(fd, seekOffset, SEEK_SET);
+        //*****debug******
+        //printf("Writing %s, offset: %ld\n", path, cur); 
+        //***************
         errno = 0;
+        
         if((write(fd, buf + bufOffset, itemN)) != itemN){
                 fprintf(stderr, "Error, Partial Write\n");
                 return EXIT_FAILURE;
         }
-        cur = lseek(fd, 0, SEEK_CUR);
-        printf("Writing %s, offset: %ld\n", path, cur); 
-        printf("-------\n"); 
+        //*****debug******
+        //cur = lseek(fd, 0, SEEK_CUR);
+        //printf("Writing %s, offset: %ld\n", path, cur); 
+        //printf("-------\n"); 
+        //***************
 
         if(errno != 0 ){
                 perror("Failed writing to file\n");
@@ -87,7 +96,6 @@ int readFilePartial(const char *path, char *buf, size_t size){
 
         int fd = openFile(path, O_RDONLY, 0);
         ssize_t itemsRead;
-        off_t curr,end;
 
         memset(buf, '\0', size * sizeof(char));
         
@@ -96,28 +104,6 @@ int readFilePartial(const char *path, char *buf, size_t size){
         if(errno != 0){
                 perror("Error reading file\n");
                 return EXIT_FAILURE;
-        }
-
-        if(1){
-                errno = 0;
-                curr = lseek(fd, 0, SEEK_CUR);
-                end = lseek(fd, 0 , SEEK_END);
-                if(errno != 0){
-                        perror("Error with lseek\n");
-                        return EXIT_FAILURE;
-                }
-
-                if(curr == end){
-                        printf("Read whole file,EOF reached\n");
-
-                }
-                else if(curr < end){
-                        printf("File is bigger than MAX_FILE_SIZE\n");
-                }
-
-                printf("Offset is at: %ld\n", curr);
-                printf("End is at: %ld\n", end);
-                printf("itemsRead: %ld\n", itemsRead);
         }
 
         close(fd);
