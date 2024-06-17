@@ -24,6 +24,5 @@ int openFile(const char *path, int flags, mode_t mode);
 int readFile(const char *path, char *buf);
 int writeFile(char *buf, const char *path, int itemN, 
                 int bufOffset, off_t seekOffset);
-int readFilePartial(const char *path, char *buf, size_t size);
 
 #endif // FILEIO

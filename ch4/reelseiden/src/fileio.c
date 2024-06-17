@@ -60,28 +60,15 @@ int writeFile(char *buf, const char *path, int itemN,
         int flags = O_WRONLY | O_CREAT ; 
         mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH;
 
-        //*****debug******
-        //off_t cur;
-        //***************
-
         int fd = openFile(path, flags, mode);
         
         lseek(fd, seekOffset, SEEK_SET);
-        //cur = lseek(fd, seekOffset, SEEK_SET);
-        //*****debug******
-        //printf("Writing %s, offset: %ld\n", path, cur); 
-        //***************
         errno = 0;
         
         if((write(fd, buf + bufOffset, itemN)) != itemN){
                 fprintf(stderr, "Error, Partial Write\n");
                 return EXIT_FAILURE;
         }
-        //*****debug******
-        //cur = lseek(fd, 0, SEEK_CUR);
-        //printf("Writing %s, offset: %ld\n", path, cur); 
-        //printf("-------\n"); 
-        //***************
 
         if(errno != 0 ){
                 perror("Failed writing to file\n");
@@ -92,20 +79,3 @@ int writeFile(char *buf, const char *path, int itemN,
         return EXIT_SUCCESS;
 }
 
-int readFilePartial(const char *path, char *buf, size_t size){
-
-        int fd = openFile(path, O_RDONLY, 0);
-        ssize_t itemsRead;
-
-        memset(buf, '\0', size * sizeof(char));
-        
-        errno = 0;
-        itemsRead = read(fd, buf, (size_t)size);
-        if(errno != 0){
-                perror("Error reading file\n");
-                return EXIT_FAILURE;
-        }
-
-        close(fd);
-        return itemsRead;
-}
