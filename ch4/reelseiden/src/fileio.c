@@ -69,11 +69,15 @@ int writeFile(char *buf, const char *path, int itemN,
                 fprintf(stderr, "Error, Partial Write\n");
                 return EXIT_FAILURE;
         }
-
         if(errno != 0 ){
                 perror("Failed writing to file\n");
                 return EXIT_FAILURE;
         }
+        
+        long cur;
+        cur = lseek(fd, 0, SEEK_CUR);
+        printf("Writing %s, offset: %ld\n", path, cur); 
+        printf("-------\n"); 
 
         close(fd);
         return EXIT_SUCCESS;

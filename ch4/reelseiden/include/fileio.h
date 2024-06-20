@@ -14,6 +14,7 @@
 //#define OUT_PATH "./outFile"
 #define PATH1 "./piece1"
 #define PATH2 "./piece2"
+#define OUT "./outMerged"
 
 struct head{
         long headS;

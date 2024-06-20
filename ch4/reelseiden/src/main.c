@@ -12,10 +12,8 @@ int main(int argc, char *argv[argc + 1]){
         char **paths;
         int nSplit = 10;
         struct head *headerToWrite;
-        struct head *headerRead;
 
 
-        headerRead = myAlloc(sizeof(struct head));
         buf = myAlloc(sizeof(char) * MAX_FILE_SIZE);
         pieceSize = myAlloc(sizeof(int) * nSplit);
         paths = myAlloc(sizeof(char *) * nSplit);
@@ -35,7 +33,7 @@ int main(int argc, char *argv[argc + 1]){
                 if(i == 0){
                         writeFile((char *)headerToWrite, paths[i], HEADER_SIZE, 
                                         bufOffset, 0);
-                        writeFile(buf, paths[i], pieceSize[i], 
+                        writeFile(buf, paths[i], pieceSize[i] - HEADER_SIZE, 
                                         bufOffset, HEADER_SIZE);
                 }
                 else{ 
@@ -44,18 +42,11 @@ int main(int argc, char *argv[argc + 1]){
                 }
         }
 
-        readMetadata(PATH1, (char *)headerRead, HEADER_SIZE);
-        /* DEBUG
-        printf("Reading frist %d bytes of %s\n", HEADER_SIZE, PATH1);
-        printf("HeadS: %ld\n", headerRead->headS);
-        printf("pieceS: %ld\n", headerRead->pieceS);
-        printf("nSplit: %d\n", headerRead->nSplit);
-        */
+        merge(OUT, buf);
 
         free(buf);
         free(pieceSize);
         free(headerToWrite);
-        free(headerRead);
         for(size_t i = 0; i < nSplit; i++){
                 free(paths[i]);
         }
