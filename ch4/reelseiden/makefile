@@ -20,5 +20,5 @@ OBJ=./src/main.o ./src/$(DEP1).o ./src/$(DEP2).o ./src/$(DEP3).o \
 	$(CC) -o $@ $^
 
 clean:
-	rm -rf ./bin/$(NAME) ./src/*.o
+	rm -rf ./bin/$(NAME) ./src/*.o ./piece* ./outMerged
 
