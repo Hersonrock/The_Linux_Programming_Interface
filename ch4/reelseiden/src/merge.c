@@ -48,17 +48,18 @@ int merge(const char *path, char *buf){
         printf("nSplit: %d\n", headerRead->nSplit);
 
         for(int i = 0; i < headerRead->nSplit; i++){
-                readFile(outPaths[i], buf);
                 if(i){
+                        readFile(outPaths[i], buf, headerRead->pieceS);
                         bufOffset = headerRead->headS - HEADER_SIZE + 
                                     headerRead->pieceS * (i - 1);
                         writeFile(buf, OUT, headerRead->pieceS,
                                 0, bufOffset);
-                        continue;
+                }else
+                {
+                        readFile(outPaths[i], buf, headerRead->headS);
+                        writeFile(buf, OUT, headerRead->headS - HEADER_SIZE,
+                                        HEADER_SIZE, 0);
                 }
-                
-                writeFile(buf, OUT, headerRead->headS - HEADER_SIZE,
-                                HEADER_SIZE, 0);
         }
 
         free(headerRead);

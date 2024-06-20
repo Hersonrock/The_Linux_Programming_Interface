@@ -13,16 +13,16 @@ int openFile(const char *path, int flags, mode_t mode){
 
 }
 
-int readFile(const char *path, char *buf){
+int readFile(const char *path, char *buf, size_t size){
 
         int fd = openFile(path, O_RDONLY, 0);
         ssize_t itemsRead;
         off_t curr,end;
 
-        memset(buf, '\0', MAX_FILE_SIZE * sizeof(char));
+        memset(buf, '\0', size * sizeof(char));
         
         errno = 0;
-        itemsRead = read(fd, buf, (size_t)MAX_FILE_SIZE);
+        itemsRead = read(fd, buf, size);
         if(errno != 0){
                 perror("Error reading file\n");
                 return EXIT_FAILURE;
@@ -74,11 +74,6 @@ int writeFile(char *buf, const char *path, int itemN,
                 return EXIT_FAILURE;
         }
         
-        long cur;
-        cur = lseek(fd, 0, SEEK_CUR);
-        printf("Writing %s, offset: %ld\n", path, cur); 
-        printf("-------\n"); 
-
         close(fd);
         return EXIT_SUCCESS;
 }

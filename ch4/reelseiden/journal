@@ -48,3 +48,8 @@ Added metadata to the start of the file(this will be useful for the merge)
 Tomorrow I'll keep working on appropiately making a readed function for the 
 metadata, which in hindsight is the same debug function.
 I wonder on which header I will put it.. ummm
+
+Thursday, June 20, 2024
+
+Finished the first complete working program, it can split a file in 10 parts
+and merge it back again to reconstruct the exact same file.

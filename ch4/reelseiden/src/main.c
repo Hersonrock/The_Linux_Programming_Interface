@@ -22,7 +22,7 @@ int main(int argc, char *argv[argc + 1]){
                 paths[i] = myAlloc(sizeof(char) * MAX_PATH_SIZE);
         }
 
-        itemsRead = readFile(PATH, buf);
+        itemsRead = readFile(PATH, buf, MAX_FILE_SIZE);
         split(nSplit, itemsRead, pieceSize, paths);
 
         headerToWrite->headS = pieceSize[0];
