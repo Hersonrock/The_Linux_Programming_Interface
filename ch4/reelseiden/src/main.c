@@ -37,7 +37,7 @@ int main(int argc, char *argv[argc + 1]){
                                         bufOffset, HEADER_SIZE);
                 }
                 else{ 
-                        bufOffset = pieceSize[0] + pieceSize[1] * (i - 1);
+                        bufOffset = pieceSize[0] - HEADER_SIZE + pieceSize[1] * (i - 1);
                         writeFile(buf, paths[i], pieceSize[i], bufOffset, 0);
                 }
         }
