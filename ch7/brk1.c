@@ -6,15 +6,17 @@
 extern char etext, edata, end;
 
 int main(int argc, char *argv[]){
+        /*
         char *heapStart = sbrk(0);
         sbrk(8);
         char *heapEnd = sbrk(0);
+        */
         //strcpy(heapStart, "abcdefg\0");
 
         printf("PID:%d\n", getpid());
         
-        printf("Final   brk= %p\n", heapEnd);
-        printf("Initial brk= %p\n", heapStart);
+        //printf("Final   brk= %p\n", heapEnd);
+        //printf("Initial brk= %p\n", heapStart);
         printf("BSS end      %p\n", &end);
         printf("edata end    %p\n", &edata);
         printf("etext end    %p\n", &etext);
