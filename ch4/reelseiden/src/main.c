@@ -4,6 +4,7 @@
 #include "../include/mem.h"
 
 #define CHAR_INPUT_SIZE 3
+#define SPLIT_INPUT_SIZE 4
 int main(int argc, char *argv[argc + 1]){
 
         char *buf;
@@ -11,7 +12,8 @@ int main(int argc, char *argv[argc + 1]){
         char **paths;
         int nSplit = 2;
         char input[CHAR_INPUT_SIZE];
-        char splitInput[4];
+        char splitInput[SPLIT_INPUT_SIZE];
+        char pathInput[MAX_PATH_SIZE];
 
         buf = myAlloc(sizeof(char) * MAX_FILE_SIZE);
         
@@ -23,10 +25,17 @@ int main(int argc, char *argv[argc + 1]){
         fgets(input, CHAR_INPUT_SIZE, stdin);
         if(input[0] == 's'){
         /// Split process
+                printf("Input file path: ");
+                fgets(pathInput, MAX_PATH_SIZE, stdin); 
+                size_t len = strlen(pathInput);
+                if(pathInput[len - 1] == '\n'){
+                        pathInput[len - 1] = '\0';
+                }
+
                 printf("How many pieces[2-100]: ");
-                fflush(stdout);
+                //fflush(stdout);
                 memset(splitInput, 0, sizeof(splitInput)); 
-                fgets(splitInput, 4, stdin);
+                fgets(splitInput, SPLIT_INPUT_SIZE, stdin);
                 nSplit = atoi(splitInput);
                 if(nSplit < 2 || nSplit > 100){
                         fprintf(stderr,"Invalid number of pieces\n");
@@ -39,7 +48,7 @@ int main(int argc, char *argv[argc + 1]){
                 }
                 pieceSize = myAlloc(sizeof(int) * nSplit);
 
-                splitFile(PATH, buf, pieceSize, paths, nSplit);
+                splitFile(pathInput, buf, pieceSize, paths, nSplit);
                 free(pieceSize);
                 for(size_t i = 0; i < nSplit; i++){
                         free(paths[i]);

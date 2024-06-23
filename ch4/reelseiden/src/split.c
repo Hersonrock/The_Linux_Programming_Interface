@@ -2,7 +2,7 @@
 #include "../include/fileio.h"
 #include "../include/mem.h"
 
-void split(int nSplit, int readItems, int *pieceSize, char **paths){
+void split(int nSplit, int readItems, int *pieceSize, char *path ,char **paths){
 
         int step = readItems / nSplit;
         float fstep = readItems % nSplit;
@@ -28,8 +28,8 @@ void splitFile(char *path, char *buf, int *pieceSize, char **paths, int nSplit){
         struct head *headerToWrite;
         headerToWrite = myAlloc(sizeof(struct head));
 
-        itemsRead = readFile(PATH, buf, MAX_FILE_SIZE);
-        split(nSplit, itemsRead, pieceSize, paths);
+        itemsRead = readFile(path, buf, MAX_FILE_SIZE);
+        split(nSplit, itemsRead, pieceSize, path, paths);
 
         headerToWrite->headS = pieceSize[0];
         headerToWrite->pieceS = pieceSize[1];
