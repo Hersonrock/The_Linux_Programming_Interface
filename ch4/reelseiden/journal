@@ -53,3 +53,8 @@ Thursday, June 20, 2024
 
 Finished the first complete working program, it can split a file in 10 parts
 and merge it back again to reconstruct the exact same file.
+
+Sunday, June 23, 2024
+
+Working on cleaning main a little bit more, I have a bug where split size is 
+being used as path input.

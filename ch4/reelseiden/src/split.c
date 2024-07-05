@@ -2,6 +2,26 @@
 #include "../include/fileio.h"
 #include "../include/mem.h"
 
+void initInput(char *pathInput, int *nSplit){
+
+        char splitInput[SPLIT_INPUT_SIZE];
+
+        memset(pathInput, 0, MAX_PATH_SIZE); 
+        printf("Input file path: ");
+        fgets(pathInput, MAX_PATH_SIZE, stdin); 
+        char *new_line = strchr(pathInput, '\n');
+        if(new_line != NULL) *new_line = '\0';
+
+        memset(splitInput, 0, SPLIT_INPUT_SIZE); 
+        printf("How many pieces[2-100]: ");
+        fgets(splitInput, SPLIT_INPUT_SIZE, stdin);
+        *nSplit = atoi(splitInput);
+        if(*nSplit < 2 || *nSplit > MAX_SPLIT_N){
+                fprintf(stderr,"Invalid number of pieces\n");
+        }
+
+}
+
 void split(int nSplit, int readItems, int *pieceSize, char *path ,char **paths){
 
         int step = readItems / nSplit;
@@ -21,6 +41,7 @@ void split(int nSplit, int readItems, int *pieceSize, char *path ,char **paths){
         }
 
 }
+
 void splitFile(char *path, char *buf, int *pieceSize, char **paths, int nSplit){
         int bufOffset = 0;
         int itemsRead;
