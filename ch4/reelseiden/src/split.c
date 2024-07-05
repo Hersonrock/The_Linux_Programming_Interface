@@ -2,7 +2,7 @@
 #include "../include/fileio.h"
 #include "../include/mem.h"
 
-void initInput(char *pathInput, int *nSplit){
+void initInput(char *pathInput, char *pieceName, int *nSplit){
 
         char splitInput[SPLIT_INPUT_SIZE];
 
@@ -20,9 +20,15 @@ void initInput(char *pathInput, int *nSplit){
                 fprintf(stderr,"Invalid number of pieces\n");
         }
 
+        memset(pieceName, 0, MAX_PATH_SIZE); 
+        printf("Output pieces name: ");
+        fgets(pieceName, MAX_PATH_SIZE, stdin);
+        new_line = strchr(pieceName, '\n');
+        if(new_line != NULL) *new_line = '\0';
 }
 
-void split(int nSplit, int readItems, int *pieceSize, char *path ,char **paths){
+void split(int nSplit, int readItems, int *pieceSize, 
+           char *path , char * pieceName, char **paths){
 
         int step = readItems / nSplit;
         float fstep = readItems % nSplit;
@@ -37,12 +43,13 @@ void split(int nSplit, int readItems, int *pieceSize, char *path ,char **paths){
                 }else{
                         pieceSize[i] = step + HEADER_SIZE;
                 }
-                sprintf(paths[i], "./piece%ld", i + 1);        
+                sprintf(paths[i], "./%s%ld", pieceName, i + 1);        
         }
 
 }
 
-void splitFile(char *path, char *buf, int *pieceSize, char **paths, int nSplit){
+void splitFile(char *path, char *buf, int *pieceSize, char *pieceName, 
+                char **paths, int nSplit){
         int bufOffset = 0;
         int itemsRead;
 
@@ -50,7 +57,7 @@ void splitFile(char *path, char *buf, int *pieceSize, char **paths, int nSplit){
         headerToWrite = myAlloc(sizeof(struct head));
 
         itemsRead = readFile(path, buf, MAX_FILE_SIZE);
-        split(nSplit, itemsRead, pieceSize, path, paths);
+        split(nSplit, itemsRead, pieceSize, path, pieceName, paths);
 
         headerToWrite->headS = pieceSize[0];
         headerToWrite->pieceS = pieceSize[1];

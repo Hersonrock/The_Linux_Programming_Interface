@@ -9,9 +9,11 @@
 #define CHAR_INPUT_SIZE 3
 #define SPLIT_INPUT_SIZE 4
 
-void split(int nSplit, int readItems, int *pieceSize, char *path, char **paths);
-void splitFile(char *path, char *buf, int *pieceSize, char **paths, int nSplit);
-void initInput(char *pathInput, int *nSplit);
+void split(int nSplit, int readItems, int *pieceSize,
+          char *path , char * pieceName, char **paths);
+void splitFile(char *path, char *buf, int *pieceSize, char *pieceName, 
+                char **paths, int nSplit);
+void initInput(char *pathInput, char *pieceName, int *nSplit);
 
 
 

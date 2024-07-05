@@ -13,6 +13,7 @@ int main(int argc, char *argv[argc + 1]){
         char inPath[MAX_PATH_SIZE];
         char outPath[MAX_PATH_SIZE];
         char piece1Path[MAX_PATH_SIZE];
+        char pieceName[MAX_PATH_SIZE];
 
         buf = myAlloc(sizeof(char) * MAX_FILE_SIZE);
         
@@ -25,7 +26,7 @@ int main(int argc, char *argv[argc + 1]){
         if(input[0] == 's'){
         /// Split process
 
-                initInput(inPath, &nSplit);
+                initInput(inPath, pieceName, &nSplit);
 
                 paths = (char **)myAlloc(sizeof(char *) * nSplit);
                 for(size_t i = 0; i < nSplit; i++){
@@ -33,7 +34,7 @@ int main(int argc, char *argv[argc + 1]){
                 }
                 pieceSize = myAlloc(sizeof(int) * nSplit);
 
-                splitFile(inPath, buf, pieceSize, paths, nSplit);
+                splitFile(inPath, buf, pieceSize, pieceName, paths, nSplit);
                 free(pieceSize);
                 for(size_t i = 0; i < nSplit; i++){
                         free(paths[i]);

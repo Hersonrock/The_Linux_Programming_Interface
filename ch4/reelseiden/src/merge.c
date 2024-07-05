@@ -31,7 +31,7 @@ int merge(char *piece1Path, char *outPath, char *buf){
         }
 
         for(size_t i = 0; i < headerRead->nSplit; i++){
-                sprintf(outPaths[i], "./piece%ld", i + 1);        
+                sprintf(outPaths[i], "./%s", piece1Path);        
                 if(i){
                         readFile(outPaths[i], buf, headerRead->pieceS);
                         bufOffset = headerRead->headS - HEADER_SIZE + 
