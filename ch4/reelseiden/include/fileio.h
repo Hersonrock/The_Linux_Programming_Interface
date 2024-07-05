@@ -10,6 +10,7 @@
 
 #define DEBUG 0
 #define MAX_FILE_SIZE 536870912  //512MB
+#define MAX_PATH_SIZE 20 
 #define PATH "./inputFile"
 //#define OUT_PATH "./outFile"
 #define PATH1 "./piece1"
