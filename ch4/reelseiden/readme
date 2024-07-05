@@ -30,3 +30,7 @@ to know by reading the piece that it is the 4th piece. Not rely on the filename
 	[DONE] Create a proper function that reads this metadata
 	[DONE] Create a function that uses this metadata to write the merged
 	file.
+[PENDING] Adding input prompts to select what file to split and what file to
+merge
+[PENDING] Adding a naming scheme option for outputs pieces.
+

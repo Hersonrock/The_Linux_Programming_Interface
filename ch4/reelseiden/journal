@@ -58,3 +58,9 @@ Sunday, June 23, 2024
 
 Working on cleaning main a little bit more, I have a bug where split size is 
 being used as path input.
+
+Friday, July 05, 2024
+
+I finished fixing the bug I was passing parameters in the wrong order.
+Now the next thing is to arrange that the merge function also asks for what 
+piece to merge.
