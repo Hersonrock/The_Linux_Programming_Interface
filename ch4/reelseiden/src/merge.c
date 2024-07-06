@@ -30,8 +30,11 @@ int merge(char *piece1Path, char *outPath, char *buf){
                 outPaths[i] = myAlloc(sizeof(char) * MAX_PATH_SIZE);
         }
 
+        char *trailing_1 = strchr(piece1Path, '1');
+        if(trailing_1 != NULL) *trailing_1 = '\0';
+
         for(size_t i = 0; i < headerRead->nSplit; i++){
-                sprintf(outPaths[i], "./%s", piece1Path);        
+                sprintf(outPaths[i], "./%s%ld", piece1Path, i + 1);        
                 if(i){
                         readFile(outPaths[i], buf, headerRead->pieceS);
                         bufOffset = headerRead->headS - HEADER_SIZE + 
