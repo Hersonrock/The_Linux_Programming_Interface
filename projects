@@ -1,0 +1,24 @@
+This will be my to-do list of project to practice the content on chapters
+
+ (Chapter)(Concept)
+[ ]  5 implement pread() and pwrite() on my reelseiden program.
+[ ]  5 implement readv() on reelseiden program.
+[ ]  5 create a problem that verifies that duplicated file descriptors share
+a file offset value and open status flags.
+[ ]  6 implement setenv() and unsetenv() using getenv() and putenv() See: p138
+[ ]  7 demostrate that malloc does not employ srbk() to adjust program break on 
+each call. see p152
+[ ]  7 implemnt malloc() and  free(), if too hard document exacly what are the 
+obstacles.
+[ ]  8 implement getpwnam() using setpwent(), getpwent() and endpwent()
+[ ]  9 implement initgroups() using setgroups(), see p184
+[ ]  9 think of a program that uses setuid(), setreuid(), seteuid(), setfsuid()
+setresuid(). see p184
+[ ]  10 read Linux Kernel Development (3rd Edition)- Robert Love. Page 234 
+Timers and Time management and think of a program that uses any concept explained
+there.
+[ ]  11 read Stevens Rago advanced-programming-in-the-unix-environment chapter 2
+page 63 - 109. Make a small program using the related concepts.
+[ ]  12 Write a program that draws a tree showing the hierarchical parent-child
+relationship of all processes on the system, going all the way back to init.
+See p231
