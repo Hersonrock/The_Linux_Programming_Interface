@@ -62,10 +62,9 @@ int writeFile(char *buf, const char *path, int itemN,
 
         int fd = openFile(path, flags, mode);
         
-        lseek(fd, seekOffset, SEEK_SET);
         errno = 0;
         
-        if((write(fd, buf + bufOffset, itemN)) != itemN){
+        if((pwrite(fd, buf + bufOffset, itemN, seekOffset)) != itemN){
                 fprintf(stderr, "Error, Partial Write\n");
                 return EXIT_FAILURE;
         }
