@@ -20,7 +20,7 @@ void mergeInit(char *piece1Path, char *outPath){
 
 int merge(char *piece1Path, char *outPath, char *buf){
         struct head *headerRead;
-        int bufOffset = 0;
+        int seekOffset = 0;
         char **outPaths; 
 
         headerRead = myAlloc(sizeof(struct head));
@@ -37,10 +37,10 @@ int merge(char *piece1Path, char *outPath, char *buf){
                 sprintf(outPaths[i], "./%s%ld", piece1Path, i + 1);        
                 if(i){
                         readFile(outPaths[i], buf, headerRead->pieceS);
-                        bufOffset = headerRead->headS - HEADER_SIZE + 
+                        seekOffset = headerRead->headS - HEADER_SIZE + 
                                     headerRead->pieceS * (i - 1);
                         writeFile(buf, outPath, headerRead->pieceS,
-                                0, bufOffset);
+                                0, seekOffset);
                 }else
                 {
                         readFile(outPaths[i], buf, headerRead->headS);
