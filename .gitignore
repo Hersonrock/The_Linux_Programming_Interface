@@ -57,3 +57,4 @@ inputFile
 */bin/
 .init.sh
 .makefile
+.gdb_history
