@@ -2,7 +2,7 @@ This will be my to-do list of project to practice the content on chapters
 
  (Chapter)(Concept)
 [x]  5 implement pread() and pwrite() on my reelseiden program.
-[ ]  5 create a problem that verifies that duplicated file descriptors share
+[x]  5 create a problem that verifies that duplicated file descriptors share
 a file offset value and open status flags.
 [ ]  6 implement setenv() and unsetenv() using getenv() and putenv() See: p138
 [ ]  7 demostrate that malloc does not employ srbk() to adjust program break on 
