@@ -6,10 +6,9 @@ NAME=main
 DEP1=other
 #------------#
 IDIR=./include
-DEPS=$(IDIR)/$(DEP1).h
-OBJ=./src/main.o ./src/$(DEP1).o
+OBJ=./src/main.o 
 
-%.o:%.c $(DEPS)
+%.o:%.c 
 	$(CC) -c -o $@ $< $(CFLAGS) -I$(IDIR)
 
 ./bin/$(NAME): $(OBJ)
