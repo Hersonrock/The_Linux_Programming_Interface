@@ -7,5 +7,6 @@ value nad open file status
 To-do:
 
 [DONE] Create a basic program that opens a file and changes its offset
-[PENDING] Review how to duplicate a file descriptor
+[DONE] Review how to duplicate a file descriptor
+[DONE] Duplicating descriptor and confirming offset
 [PENDING] Review how to check the open file status flag.
