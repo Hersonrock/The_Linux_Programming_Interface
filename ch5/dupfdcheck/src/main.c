@@ -8,6 +8,7 @@
 #define MOVE 10
 int main(int argc, char *argv[]){
         int fd, dup_fd;
+        int flags, dup_flags;
         //mode_t mode = S_IRUSR | S_IRGRP | S_IROTH;
         off_t  curr, new_off, dup_curr;
 
@@ -24,12 +25,17 @@ int main(int argc, char *argv[]){
         new_off = lseek(fd, MOVE , SEEK_SET);
         printf("Moving offset +%d bytes\n", MOVE);
         printf("File current offset: %ld\n", new_off);
+        
+        flags = fcntl(fd, F_GETFL);
+        printf("File descriptor: %d status flags: %d\n", fd, flags);
 
         dup_fd = dup(fd);
         printf("File descriptor duplicated, original: %d, duplicate: %d\n",
                         fd, dup_fd);
         dup_curr = lseek(dup_fd, 0 , SEEK_CUR);
         printf("Duplicated fd offset: %ld\n", dup_curr);
+        dup_flags = fcntl(dup_fd, F_GETFL);
+        printf("File descriptor: %d status flags: %d\n", dup_fd, dup_flags);
 
         return EXIT_SUCCESS;
 }
