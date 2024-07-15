@@ -5,7 +5,7 @@ This will be my to-do list of project to practice the content on chapters
 [x]  5 create a problem that verifies that duplicated file descriptors share
 a file offset value and open status flags.
 [x]  6 implement setenv() and unsetenv() using getenv() and putenv() See: p138
-[ ]  7 demostrate that malloc does not employ srbk() to adjust program break on 
+[x]  7 demostrate that malloc does not employ srbk() to adjust program break on 
 each call. see p152
 [ ]  7 implemnt malloc() and  free(), if too hard document exacly what are the 
 obstacles.
