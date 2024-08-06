@@ -1,36 +1,40 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<unistd.h>
+#include<string.h>
 
 
-#define ALIGN_SIZE 8 
+#define ALIGN_SIZE 8
 #define HEADER_SIZE ALIGN_SIZE / 2
-#define INPUT_SIZE 10
+#define SIZE 5
+#define PAYLOAD_SIZE SIZE * sizeof(int)
 
 typedef struct{
         int header;
-        char payload;
+        char payload[PAYLOAD_SIZE];
 }block_struct;
 
 int get_block_size(int in_size);
 int main(int argc, char *argv[]){
-        char buff[INPUT_SIZE];
-        int payload_size, block_size, padding;
+        int block_size;
         char *f_break = sbrk(0);
         block_struct block;
-         
-        printf("Aligned to %d Bytes\n", ALIGN_SIZE);
-        printf("Provide payload_size to allocate: ");
-        fgets(buff, INPUT_SIZE, stdin);
-        payload_size = (int)strtol(buff, NULL, 10);
-        block_size = get_block_size(payload_size);
-        padding = block_size - payload_size - HEADER_SIZE;
-        printf("Block size will be: %d\n", block_size);
-        printf("|Header|Payload|Padding|\n");
-        printf("|%6d|%7d|%7d|\n", HEADER_SIZE, payload_size, padding);
-        block.header = block_size | 0x1;
+        int payload[SIZE] = {4, 3, 5, 6, 1}; 
+        char *blk_ptr;
 
-        printf("block.header: 0x%08x\n", block.header);
+        printf("Aligned to %d Bytes\n", ALIGN_SIZE);
+        block_size = get_block_size(PAYLOAD_SIZE);
+        block.header = block_size | 0x1;
+        memcpy(block.payload, payload, PAYLOAD_SIZE);
+
+        blk_ptr = sbrk(block_size);
+        memcpy(blk_ptr, &block, sizeof(block_struct)); 
+
+        block_struct *new_block = (block_struct *)blk_ptr;
+        int *new_payload = (int *)new_block->payload;
+        for(size_t i = 0; i < SIZE; i++){
+                printf("Payload[%ld] = %d\n", i, new_payload[i]);
+        }
 
         brk(f_break); 
         return EXIT_SUCCESS;
