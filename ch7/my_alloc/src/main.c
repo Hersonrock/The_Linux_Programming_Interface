@@ -3,47 +3,47 @@
 #include<unistd.h>
 #include<string.h>
 
-
-#define ALIGN_SIZE 8
+#define ALIGN_SIZE 16
 #define HEADER_SIZE ALIGN_SIZE / 2
 #define SIZE 5
-#define PAYLOAD_SIZE SIZE * sizeof(int)
-
-typedef struct{
-        int header;
-        char payload[PAYLOAD_SIZE];
-}block_struct;
 
 int get_block_size(int in_size);
+void *my_alloc(size_t size);
 int main(int argc, char *argv[]){
-        int block_size;
-        char *f_break = sbrk(0);
-        block_struct block;
-        int payload[SIZE] = {4, 3, 5, 6, 1}; 
-        char *blk_ptr;
+        char *heap_start = sbrk(0);
+        int *payload_ptr;
 
-        printf("Aligned to %d Bytes\n", ALIGN_SIZE);
-        block_size = get_block_size(PAYLOAD_SIZE);
-        block.header = block_size | 0x1;
-        memcpy(block.payload, payload, PAYLOAD_SIZE);
+        //allocating memory
+        payload_ptr = my_alloc(SIZE * sizeof(int));
 
-        blk_ptr = sbrk(block_size);
-        memcpy(blk_ptr, &block, sizeof(block_struct)); 
-
-        block_struct *new_block = (block_struct *)blk_ptr;
-        int *new_payload = (int *)new_block->payload;
+        //asigning values
         for(size_t i = 0; i < SIZE; i++){
-                printf("Payload[%ld] = %d\n", i, new_payload[i]);
+                payload_ptr[i] = i + 1;
         }
 
-        brk(f_break); 
+        //printing values
+        for(size_t i = 0; i < SIZE; i++){
+                printf("Payload[%ld] = %d\n", i, payload_ptr[i]);
+        }
+
+        //Freeing memory forcefully
+        brk(heap_start);
         return EXIT_SUCCESS;
 }
 int get_block_size(int in_size){
         in_size += HEADER_SIZE;
         int size = (in_size / ALIGN_SIZE) * ALIGN_SIZE;
         if(in_size % ALIGN_SIZE) size += ALIGN_SIZE;
-
         return size;
 }
 
+void *my_alloc(size_t size){
+        int block_size = get_block_size(size);
+        int header = block_size | 0x1;
+        char *blk_ptr = sbrk(block_size);
+
+        memcpy(blk_ptr, &header, sizeof(header));
+        memset(blk_ptr + sizeof(header), 0, size);
+
+        return blk_ptr + HEADER_SIZE;
+}
